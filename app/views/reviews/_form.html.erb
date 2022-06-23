@@ -1,0 +1,16 @@
+<div>
+  <h1>Add Reviews</h1>
+  <%= form_with model: [ @customer, @customer.reviews.build ] ,  html: { 'data-turbo': false }   do |f|%>
+    <div class="form-outline mb-4">
+      <%= f.label 'title', class: "form-label"%>
+      <%= f.text_field :title, class: "form-control form-control-lg" %>
+    </div>
+    <div class="form-outline mb-4">
+      <%= f.label 'body', class: "form-label"%>
+      <%= f.text_area :body, class: "form-control form-control-lg"%>
+    </div>
+    <div  class="d-flex justify-content-center">
+      <%= f.submit class:"btn btn-success btn-block btn-lg gradient-custom-4 text-body"%>
+    </div>
+  <% end %>
+</div>

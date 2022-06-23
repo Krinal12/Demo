@@ -1,0 +1,50 @@
+<html>
+  <body>
+    <div class="container">
+      <h1>Article</h1>
+      <% flash.each do |name, msg| -%>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <%= content_tag :div, msg, class: name %>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      <% end -%>
+        <table border=1 class="table table-striped">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Body</th>
+              <th>Email</th>
+              <th>DOB</th>
+              <th>Gender</th>
+              <th>City</th>
+              <th>Image</th>
+              <th>Eidt</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= @article.title %></td>
+              <td><%= @article.body %></td>
+              <td><%= @article.email %></td>
+              <td><%= @article.dob %></td>
+              <td><%= @article.gender %></td>
+              <td><%= @article.city %></td>
+              <% if @article.avatar.attached?%>
+              <td><%= image_tag @article.avatar ,  size: "100x100" %></td>
+              <%else%>
+              <td></td>
+              <%end%>
+              <td><%= link_to "Edit" , edit_article_path(@article)%></td>
+              <td><%= button_to "delete", {:controller => :articles,
+                  :action => 'destroy', :id => @article.id ,  }, :method => :delete , :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger mx-1"
+                  %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+    <%= link_to "Back" , root_path%>
+    </div>
+  </body>
+</html>
+                 

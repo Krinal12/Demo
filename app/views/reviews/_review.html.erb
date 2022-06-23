@@ -1,0 +1,16 @@
+<div>
+  <p>
+    <strong>Commenter:</strong>
+    <%= review.title %>
+  </p>
+  <p>
+    <strong>Comment:</strong>
+    <%= review.body %>
+  </p>
+  <p>
+    <%= link_to "Destroy Review", [review.customer, review], data: {
+      turbo_method: :delete,
+      turbo_confirm: "Are you sure?"
+    } %>
+  </p>
+</div>

@@ -1,0 +1,62 @@
+<div>
+  <%= form_with model: @article,  html: { 'data-turbo': false }  do |f| %>
+    <div class="form-outline mb-4">
+      <%= f.label 'title' , class: "form-label" %><br>
+      <%= f.text_field :title , class: "form-control form-control-lg"   %> 
+      <% @article.errors.full_messages_for(:title).each do |msg|%>
+        <%= msg %>
+      <%end%>
+    </div>
+    <div class="form-outline mb-4">
+      <%= f.label 'body' , class: "form-label" %><br>
+      <%= f.text_area :body , class: "form-control form-control-lg"   %>
+      <% @article.errors.full_messages_for(:body).each do |msg|%>
+        <%= msg %>
+      <%end%>
+    </div>
+    <div>
+      <%= f.label 'email' , class: "form-label" %><br>
+      <%= f.text_field :email , class: "form-control form-control-lg"   %>
+      <% @article.errors.full_messages_for(:email).each do |msg|%>
+        <%= msg %>
+      <%end%>
+    </div>
+    <div>
+      <%= f.label 'dob' , class: "form-label" %><br>
+      <%= f.date_field :dob , class: "form-control form-control-lg"   %>
+      <% @article.errors.full_messages_for(:dob).each do |msg|%>
+        <%= msg %>
+      <%end%>
+    </div><br>
+    <div>
+      <%= f.label :gender ,  "Select  a Gender:"%><br>
+      <%= f.radio_button :gender ,"Male"%>
+      <%= f.label :Male , "Male"%>
+      <%= f.radio_button :gender ,"Female"%>
+      <%= f.label :Female , "Female"%>
+      <% @article.errors.full_messages_for(:gender).each do |msg|%>
+        <%= msg %>
+      <%end%>
+    </div><br>
+    <div>
+      <%= f.label :city , "Select City"  %>
+      <%= f.select(:city, ['ahmedabad', "surat" , "rajkot"], {selected: "surat" }, { :class => 'form-select' }) %>
+      <% @article.errors.full_messages_for(:city).each do |msg|%>
+        <%= msg %>
+      <%end%>
+    </div><br>
+    <div>
+      <%= f.file_field :avatar %>
+    </div>
+    <div>
+      <%= f.check_box :condition %>
+      <%= f.label :condition , "Agree Conditions"%>
+      <% @article.errors.full_messages_for(:condition).each do |msg|%>
+        <%= msg %>
+      <%end%>
+    </div>
+    <div class="d-flex justify-content-center">
+      <%= f.submit   class:"btn btn-success btn-block btn-lg gradient-custom-4 text-body" , data: { turbo_confirm: 'Are you sure?' } %>
+    </div>
+  <% end %>
+</div>

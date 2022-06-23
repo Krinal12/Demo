@@ -1,0 +1,65 @@
+<html>
+  <body>
+    <% if Current.user %>
+      <%= button_to 'Logout', logout_path, method: :delete %>
+      <div class="container">
+        <h1>Articles</h1>
+        <%= link_to "New Article" , new_article_path %>
+        <table border=1 class="table table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>Body</th>
+              <th>Email</th>
+              <th>DOB</th>
+              <th>Gender</th>
+              <th>City</th>
+              <th>Image</th>
+              <th>Show</th>
+              <th>Eidt</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @articles.each do |article| %>
+            <tr>
+              <td><%= article.id %></td>
+              <td><%= article.title %></td>
+              <td><%= article.body %></td>
+              <td><%= article.email %></td>
+              <td><%= article.dob %></td>
+              <td><%= article.gender %></td>
+              <td><%= article.city %></td>
+              <% if article.avatar.attached?%>
+              <td><%= image_tag article.avatar ,  size: "100x100" %>
+              <%# <%= link_to "Download" , article.avatar, download: true  %></td>  
+              <%else%>
+              <td></td>
+              <%end%>
+              <td><%= link_to "Show" , article%></td>
+              <td><%= link_to "Edit" , edit_article_path(article)%></td>
+              <td><%= link_to "Destroy", article_path(article), data: {
+                                  turbo_method: :delete,
+                                  turbo_confirm: "Are you sure?"
+                                } %>
+              </td>
+            </tr>
+            <%end%>
+        </tbody>
+        </table>
+      </div>
+    <% else %>
+      <%= link_to 'Sign Up', sign_up_path %>
+      or
+      <%= link_to 'Login', sign_in_path %>
+    <%end%>
+  </body>
+</html>
+    
+
+
+
+
+
+
